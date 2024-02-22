@@ -1,4 +1,17 @@
-def gv
+def buildApp() {
+    // Logic to build the application
+    echo "Building the application..."
+}
+
+def testApp() {
+    // Logic to test the application
+    echo "Testing the application..."
+}
+
+def deployApp() {
+    // Logic to deploy the application
+    echo "Deploying the application..."
+}
 
 pipeline {
     agent any
@@ -7,17 +20,10 @@ pipeline {
         booleanParam(name: 'executeTests', defaultValue: true, description: '')
     }
     stages {
-        stage("init") {
-            steps {
-                script {
-                   gv = load "script.groovy" 
-                }
-            }
-        }
         stage("build") {
             steps {
                 script {
-                    gv.buildApp()
+                    buildApp()
                 }
             }
         }
@@ -29,14 +35,14 @@ pipeline {
             }
             steps {
                 script {
-                    gv.testApp()
+                    testApp()
                 }
             }
         }
         stage("deploy") {
             steps {
                 script {
-                    gv.deployApp()
+                    deployApp()
                 }
             }
         }
